@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'Foods.dart';
+import 'popularFoods.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -28,10 +31,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final Color white = HexColor.fromHex('#FDFEFE');
-  final Color black = HexColor.fromHex('#000000');
-  final List<int> numbers = [1, 2, 3, 5, 8, 13, 21, 34, 55];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,160 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     favorites(),
-                    Expanded(
-                        child: Container(
-                            padding: EdgeInsets.only(top: 20),
-                            child: SizedBox(
-                              child: ListView.builder(
-                                  itemCount: 100,
-                                  scrollDirection: Axis.vertical,
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    return Card(
-                                        child: Container(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.17,
-                                      padding: EdgeInsets.all(15),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          Expanded(
-                                              flex: 3,
-                                              child: Container(
-                                                  child: ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              20.0),
-                                                      child: Image.asset(
-                                                        'assets/images/cake.jpg',
-                                                        fit: BoxFit.cover,
-                                                      )))),
-                                          Expanded(
-                                            flex: 6,
-                                            child: Container(
-                                                padding: EdgeInsets.fromLTRB(
-                                                    10.0, 5.0, 0, 3.0),
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Expanded(
-                                                      flex: 3,
-                                                      child: Text('Cake',
-                                                          style: TextStyle(
-                                                              fontSize: 18,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold)),
-                                                    ),
-                                                    Expanded(
-                                                      flex: 5,
-                                                      child: Row(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          SizedBox(
-                                                            width: 100.0,
-                                                            height: 20.0,
-                                                            child: RaisedButton(
-                                                              onPressed: () {},
-                                                              color: Colors
-                                                                  .pinkAccent,
-                                                              shape:
-                                                                  StadiumBorder(),
-                                                              child: Text(
-                                                                'Gorengan',
-                                                                style: TextStyle(
-                                                                    fontSize:
-                                                                        10,
-                                                                    color: Colors
-                                                                        .black,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                          SizedBox(
-                                                            width: 6,
-                                                          ),
-                                                          SizedBox(
-                                                            width: 120.0,
-                                                            height: 20.0,
-                                                            child: RaisedButton(
-                                                              onPressed: () {},
-                                                              color: Colors
-                                                                  .deepPurple,
-                                                              shape:
-                                                                  StadiumBorder(),
-                                                              child: Text(
-                                                                'Makanan Ringan',
-                                                                style: TextStyle(
-                                                                    fontSize:
-                                                                        10,
-                                                                    color: Colors
-                                                                        .black,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold),
-                                                              ),
-                                                            ),
-                                                          )
-                                                        ],
-                                                      ),
-                                                    ),
-                                                    Expanded(
-                                                      flex: 5,
-                                                      child: Row(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Padding(
-                                                            padding: EdgeInsets
-                                                                .fromLTRB(
-                                                                    2.0,
-                                                                    5.0,
-                                                                    0,
-                                                                    3.0),
-                                                            child: Text(
-                                                              'Warunk Buyakruk',
-                                                              style: TextStyle(
-                                                                  color: Colors
-                                                                      .grey),
-                                                            ),
-                                                          ),
-                                                          Spacer(),
-                                                          Padding(
-                                                            padding: EdgeInsets
-                                                                .fromLTRB(
-                                                                    0.0,
-                                                                    5.0,
-                                                                    0,
-                                                                    3.0),
-                                                            child: Text(
-                                                                'Rp.1253',
-                                                                style: TextStyle(
-                                                                    color: Colors
-                                                                        .black,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold)),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ],
-                                                )),
-                                          ),
-                                        ],
-                                      ),
-                                    ));
-                                  }),
-                            ))),
+                    thirdPart(),
                   ],
                 ),
               ),
@@ -226,6 +72,133 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
+  }
+
+  Expanded thirdPart() {
+    return Expanded(
+        child: Container(
+            padding: EdgeInsets.only(top: 20),
+            child: SizedBox(
+              child: ListView.builder(
+                  itemCount: popularfoods.length,
+                  scrollDirection: Axis.vertical,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Card(
+                        child: Container(
+                      height: MediaQuery.of(context).size.height * 0.17,
+                      padding: EdgeInsets.all(15),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Expanded(
+                              flex: 3,
+                              child: Container(
+                                  child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(20.0),
+                                      child: Image.asset(
+                                        popularfoods[index].image,
+                                        fit: BoxFit.cover,
+                                      )))),
+                          Expanded(
+                            flex: 6,
+                            child: Container(
+                                padding: EdgeInsets.fromLTRB(10.0, 5.0, 0, 3.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Expanded(
+                                      flex: 3,
+                                      child: Text(popularfoods[index].title,
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.bold)),
+                                    ),
+                                    SizedBox(
+                                      height: 4,
+                                    ),
+                                    Expanded(
+                                      flex: 5,
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          SizedBox(
+                                            width: 100.0,
+                                            height: 20.0,
+                                            child: RaisedButton(
+                                              onPressed: () {},
+                                              color: Colors.pinkAccent,
+                                              shape: StadiumBorder(),
+                                              child: Text(
+                                                'Gorengan',
+                                                style: TextStyle(
+                                                    fontSize: 10,
+                                                    color: Colors.white,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: 6,
+                                          ),
+                                          SizedBox(
+                                            width: 120.0,
+                                            height: 20.0,
+                                            child: RaisedButton(
+                                              onPressed: () {},
+                                              color: Colors.deepPurple,
+                                              shape: StadiumBorder(),
+                                              child: Text(
+                                                'Makanan Ringan',
+                                                style: TextStyle(
+                                                    fontSize: 10,
+                                                    color: Colors.white,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    Expanded(
+                                      flex: 5,
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsets.fromLTRB(
+                                                2.0, 5.0, 0, 3.0),
+                                            child: Text(
+                                              'Warunk Buyakruk',
+                                              style:
+                                                  TextStyle(color: Colors.grey),
+                                            ),
+                                          ),
+                                          Spacer(),
+                                          Padding(
+                                            padding: EdgeInsets.fromLTRB(
+                                                0.0, 5.0, 0, 3.0),
+                                            child: Text(
+                                                popularfoods[index].price,
+                                                style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontWeight:
+                                                        FontWeight.bold)),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                )),
+                          ),
+                        ],
+                      ),
+                    ));
+                  }),
+            )));
   }
 
   Row favorites() {
@@ -324,7 +297,7 @@ class _MyHomePageState extends State<MyHomePage> {
   SizedBox secondPart() => SizedBox(
         height: 200,
         child: ListView.builder(
-          itemCount: 10,
+          itemCount: foods.length,
           scrollDirection: Axis.horizontal,
           itemBuilder: (BuildContext context, int index) {
             return Container(
@@ -339,15 +312,15 @@ class _MyHomePageState extends State<MyHomePage> {
                               child: ClipRRect(
                                   borderRadius: BorderRadius.circular(20.0),
                                   child: Image.asset(
-                                    'assets/images/cake.jpg',
+                                    foods[index].image,
                                     fit: BoxFit.cover,
                                   )))),
                       Expanded(
                           flex: 1,
                           child: Row(
                             children: [
-                              Text("      Cake - "),
-                              Text("10 items",
+                              Text("  " + foods[index].title + " - "),
+                              Text(foods[index].number + " items",
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontWeight: FontWeight.bold)),
@@ -359,13 +332,4 @@ class _MyHomePageState extends State<MyHomePage> {
           },
         ),
       );
-}
-
-extension HexColor on Color {
-  static Color fromHex(String hexString) {
-    final buffer = StringBuffer();
-    if (hexString.length == 6 || hexString.length == 7) buffer.write('ff');
-    buffer.write(hexString.replaceFirst('#', ''));
-    return Color(int.parse(buffer.toString(), radix: 16));
-  }
 }
